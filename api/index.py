@@ -1,11 +1,13 @@
-from http.server import BaseHTTPRequestHandler
+# import necessary libraries and functions
+from flask import Flask, jsonify, request
+
+# creating a Flask app
+app = Flask(__name__)
 
 
-class handler(BaseHTTPRequestHandler):
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    if (request.method == 'GET'):
 
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header('Content-type', 'text/plain')
-        self.end_headers()
-        self.wfile.write('Hello, world!'.encode('utf-8'))
-        return
+        data = "hello world"
+        return jsonify({'data': data})
